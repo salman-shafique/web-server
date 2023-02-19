@@ -14,6 +14,8 @@ services:
       - /var/www:/var/www/
     depends_on:
       - certbot
+    networks:
+      - webserver      
   certbot:
     image: certbot/certbot
     container_name: certbot
@@ -22,6 +24,8 @@ services:
       - ./nginx/certs:/etc/letsencrypt
       - ./certbot/conf:/etc/letsencrypt
     command: certonly --webroot --webroot-path=/var/www --email your_email@example.com --agree-tos -d your_domain.com
+    networks:
+      - webserver
 networks:
   app-net:
     external: true
