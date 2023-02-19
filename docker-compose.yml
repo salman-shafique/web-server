@@ -22,3 +22,6 @@ services:
       - ./nginx/certs:/etc/letsencrypt
       - ./certbot/conf:/etc/letsencrypt
     command: certonly --webroot --webroot-path=/var/www --email your_email@example.com --agree-tos -d your_domain.com
+networks:
+  app-net:
+    external: true
